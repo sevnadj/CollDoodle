@@ -7,6 +7,7 @@ app = Flask(__name__, template_folder='views')
 
 app.register_blueprint(controllers.main)
 app.register_blueprint(controllers.muscle)
+app.register_blueprint(controllers.error)
 
 #mysql = MySQL()
 #app.config['MYSQL_USER'] = 'root'
