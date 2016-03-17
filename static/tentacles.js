@@ -21,6 +21,58 @@
  * THE SOFTWARE.
  */
 
+// create web audio api context
+var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+// create Oscillator and gain node
+var oscillator = audioCtx.createOscillator();
+var gainNode = audioCtx.createGain();
+
+// connect oscillator to gain node to speakers
+
+oscillator.connect(gainNode);
+gainNode.connect(audioCtx.destination);
+
+// create initial theremin frequency and volumn values
+
+var WIDTH = window.innerWidth;
+var HEIGHT = window.innerHeight;
+
+var maxFreq = 6000;
+var maxVol = 0.02;
+
+var initialFreq = 3000;
+var initialVol = 0.001;
+
+// set options for the oscillator
+
+oscillator.type = 'square';
+oscillator.frequency.value = initialFreq; // value in hertz
+oscillator.detune.value = 100; // value in cents
+oscillator.start(0);
+
+oscillator.onended = function() {
+ console.log('Your tone has now stopped playing!');
+}
+
+gainNode.gain.value = initialVol;
+
+// Mouse pointer coordinates
+
+var CurX;
+var CurY;
+
+function updateSound(mouse_x, mouse_y) {
+    KeyFlag = false;
+
+    CurX = mouse_x;
+    CurY = mouse_y;
+
+    oscillator.frequency.value = (CurX/WIDTH) * maxFreq;
+    gainNode.gain.value = (CurY/HEIGHT) * maxVol;
+}
+
+
 var settings = {
     interactive: false,
     darkTheme: true,
@@ -40,12 +92,12 @@ var utils = {
     curveThroughPoints: function( points, ctx ) {
 
         var i, n, a, b, x, y;
-        
+
         for ( i = 1, n = points.length - 2; i < n; i++ ) {
 
             a = points[i];
             b = points[i + 1];
-            
+
             x = ( a.x + b.x ) * 0.5;
             y = ( a.y + b.y ) * 0.5;
 
@@ -54,13 +106,13 @@ var utils = {
 
         a = points[i];
         b = points[i + 1];
-        
+
         ctx.quadraticCurveTo( a.x, a.y, b.x, b.y );
     }
 };
 
 var Node = function( x, y ) {
-    
+
     this.x = this.ox = x || 0.0;
     this.y = this.oy = y || 0.0;
 
@@ -89,7 +141,7 @@ var Tentacle = function( options ) {
 Tentacle.prototype = {
 
     move: function( x, y, instant ) {
-        
+
         this.nodes[0].x = x;
         this.nodes[0].y = y;
 
@@ -270,6 +322,8 @@ var sketch = Sketch.create({
             tentacle.move( center.x + px, center.y + py );
             tentacle.update();
         }
+
+        updateSound(this.mouse.x, this.mouse.y);
     },
 
     draw: function() {
@@ -299,7 +353,7 @@ var sketch = Sketch.create({
     },
 
     mousedown: function() {
-        
+
         if ( demo ) {
 
             demo = false;
@@ -324,7 +378,7 @@ function onSettingsChanged() {
 }
 
 function onThemeChanged( dark ) {
-    
+
     settings.colour.h = 0;
     settings.colour.s = 0;
     settings.colour.v = dark ? 0.8 : 0.1;
