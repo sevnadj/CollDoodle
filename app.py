@@ -7,6 +7,10 @@ app = Flask(__name__, template_folder='views')
 
 app.register_blueprint(controllers.main)
 app.register_blueprint(controllers.muscle)
+app.register_blueprint(controllers.touch)
+app.register_blueprint(controllers.pulsator)
+app.register_blueprint(controllers.sea)
+app.register_blueprint(controllers.atom)
 app.register_blueprint(controllers.error)
 
 #mysql = MySQL()

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AtomBeat</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<script src="processing.js"></script>
+	<script src="{{ url_for('static', filename='atom.js') }}"></script>
+</head>
+<body>
+	
+	<button style="position: absolute;display:inline;margin-top:15px;margin-left:15px;" onclick="window.location.replace('http://localhost:3000/')" type="button" class="btn btn-danger btn-lg">
+            Back
+    </button>
+	
+	<canvas data-processing-sources="{{ url_for('static', filename='AtomBeat.pde') }}"></canvas>
+</body>
+</html>
