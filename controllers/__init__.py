@@ -1,2 +1,6 @@
 from main import *
-from d1 import *
+from muscle import *
+from touch import *
+from pulsator import *
+from sea import *
+from atom import *

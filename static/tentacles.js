@@ -20,7 +20,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 var settings = {
     interactive: false,
     darkTheme: true,
@@ -40,12 +39,12 @@ var utils = {
     curveThroughPoints: function( points, ctx ) {
 
         var i, n, a, b, x, y;
-        
+
         for ( i = 1, n = points.length - 2; i < n; i++ ) {
 
             a = points[i];
             b = points[i + 1];
-            
+
             x = ( a.x + b.x ) * 0.5;
             y = ( a.y + b.y ) * 0.5;
 
@@ -54,13 +53,13 @@ var utils = {
 
         a = points[i];
         b = points[i + 1];
-        
+
         ctx.quadraticCurveTo( a.x, a.y, b.x, b.y );
     }
 };
 
 var Node = function( x, y ) {
-    
+
     this.x = this.ox = x || 0.0;
     this.y = this.oy = y || 0.0;
 
@@ -89,7 +88,7 @@ var Tentacle = function( options ) {
 Tentacle.prototype = {
 
     move: function( x, y, instant ) {
-        
+
         this.nodes[0].x = x;
         this.nodes[0].y = y;
 
@@ -270,6 +269,8 @@ var sketch = Sketch.create({
             tentacle.move( center.x + px, center.y + py );
             tentacle.update();
         }
+
+        //updateSound(this.mouse.x, this.mouse.y);
     },
 
     draw: function() {
@@ -299,7 +300,7 @@ var sketch = Sketch.create({
     },
 
     mousedown: function() {
-        
+
         if ( demo ) {
 
             demo = false;
@@ -324,7 +325,7 @@ function onSettingsChanged() {
 }
 
 function onThemeChanged( dark ) {
-    
+
     settings.colour.h = 0;
     settings.colour.s = 0;
     settings.colour.v = dark ? 0.8 : 0.1;
