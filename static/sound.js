@@ -92,7 +92,7 @@ function updateSound(mouse_x, mouse_y) {
     oscillator.connect(gainNode);
     KeyFlag = false;
 
-    var select = notesByKeyCode[floor(mouse_x / WIDTH * 10)].frequency;
+    var select = notesByKeyCode[Math.floor(mouse_x / WIDTH * 10)].frequency;
 
     oscillator.frequency.value = select;
     gainNode.gain.value = maxVol;
