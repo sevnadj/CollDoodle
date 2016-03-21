@@ -125,6 +125,11 @@ int CBodyBasics::Run(HINSTANCE hInstance, int nCmdShow)
         (DLGPROC)CBodyBasics::MessageRouter, 
         reinterpret_cast<LPARAM>(this));
 
+	//Register Hotkeys
+	RegisterHotKey(hWndApp, 1, MOD_ALT | MOD_NOREPEAT, 0x49); //i
+	RegisterHotKey(hWndApp, 2, MOD_ALT | MOD_NOREPEAT, 0x41); //a
+	RegisterHotKey(hWndApp, 3, MOD_ALT | MOD_NOREPEAT, 0x44); //d
+
     // Show window
     ShowWindow(hWndApp, nCmdShow);
 
@@ -133,19 +138,22 @@ int CBodyBasics::Run(HINSTANCE hInstance, int nCmdShow)
 	{
 		Update();
 
-		if (msg.message == WM_KEYDOWN) {
-			switch (msg.wParam) {
-			case VK_LEFT:
-				m_mouseManager.attach();
-				break;
-			case VK_DOWN:
-				m_mouseManager.detach();
-				break;
-			case VK_RIGHT://i
-				m_mouseManager.keyboard_interrupt();
-				break;
-			default:
-				break;
+		if (msg.message == WM_HOTKEY) {
+			
+			if (LOWORD(msg.lParam) == MOD_ALT) {
+				switch (HIWORD(msg.lParam)) {
+				case 0x41:
+					m_mouseManager.attach();
+					break;
+				case 0x44:
+					m_mouseManager.detach();
+					break;
+				case 0x49://i
+					m_mouseManager.keyboard_interrupt();
+					break;
+				default:
+					break;
+				};
 			}
 		}
 

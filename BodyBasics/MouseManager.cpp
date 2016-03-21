@@ -142,7 +142,6 @@ void MouseManager::set_default() {
 	mouse_state = Mouse_state::MOUSE_UP;
 	tracking_state = Tracking_state::Idle;
 	position_state = Position_state::Head;
-	release_mouse();
 }
 
 
