@@ -12,13 +12,16 @@
 		function getRandomInt(min, max) {
 		    // return Math.floor(Math.random() * (max - min + 1)) + min;
 		    
-		    var links = ["atom", "sea", "muscle", "touch"];
+		    var links = ["atom", "sea", "muscle", "pulsator"];
 		    // var el = document.getElementById('foo');
 			// el.onclick = showFoo;
 		    // $.get("http://localhost:3000/" + links[Math.floor(Math.random() * (max - min + 1)) + min]);
 		    // return "http://google.com"
 		    // return ="location.href='http://google.com';"
-		    window.location.replace("http://localhost:3000/" + links[Math.floor(Math.random() * (max - min + 1)) + min]);
+		    // window.location.replace("http://localhost:3000/" + links[Math.floor(Math.random() * (max - min + 1)) + min]);
+
+		    var randomLink = links[Math.floor(Math.random() * (max - min + 1)) + min]
+		    window.location.replace("/" + randomLink);
 		}
 
 	</script>
@@ -59,12 +62,6 @@
 		  </div>
 
 		  <div class="col-xs-6 col-md-3">
-		    <a href="/touch" class="thumbnail">
-		      <img src="http://source.codedoodl.es/edankwan/touch/thumb.jpg" alt="touch">
-		    </a>
-		  </div>
-
-		  <div class="col-xs-6 col-md-3">
 		    <a href="/sea" class="thumbnail">
 		      <img src="http://source.codedoodl.es/j0n/sea-something/thumb.jpg" alt="sea">
 		    </a>
@@ -73,6 +70,12 @@
 		   <div class="col-xs-6 col-md-3">
 		    <a href="/atom" class="thumbnail">
 		      <img src="http://source.codedoodl.es/montoyadiego/atombeat/thumb.jpg" alt="atom">
+		    </a>
+		  </div>
+
+		  <div class="col-xs-6 col-md-3">
+		    <a href="/error" class="thumbnail">
+		      <img src="http://source.codedoodl.es/edankwan/touch/thumb.jpg" alt="touch">
 		    </a>
 		  </div>
 

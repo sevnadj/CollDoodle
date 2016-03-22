@@ -24,7 +24,7 @@ var initialVol = 0.001;
 // set options for the oscillator
 
 oscillator.type = 'triangle';
-oscillator.frequency.value = initialFreq; // value in hertz
+oscillator.frequency.value = 261.6; // value in hertz
 oscillator.detune.value = 100; // value in cents
 oscillator.start(0);
 
@@ -92,7 +92,7 @@ function updateSound(mouse_x, mouse_y) {
     oscillator.connect(gainNode);
     KeyFlag = false;
 
-    var select = notesByKeyCode[floor(mouse_x / WIDTH * 10)].frequency;
+    var select = notesByKeyCode[Math.floor(mouse_x / WIDTH * 10)].frequency;
 
     oscillator.frequency.value = select;
     gainNode.gain.value = maxVol;
