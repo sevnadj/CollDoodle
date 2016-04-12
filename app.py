@@ -11,6 +11,7 @@ app.register_blueprint(controllers.touch)
 app.register_blueprint(controllers.pulsator)
 app.register_blueprint(controllers.sea)
 app.register_blueprint(controllers.atom)
+app.register_blueprint(controllers.nowhere)
 app.register_blueprint(controllers.error)
 
 #mysql = MySQL()
