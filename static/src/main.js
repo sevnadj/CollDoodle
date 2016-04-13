@@ -62,27 +62,27 @@ function windowAdjust() {
 
 $.when(
   $.ajax({
-    url: 'shaders/particle.frag',
+    url: 'static/shaders/particle.frag',
     datatype: 'text'
   }),
   $.ajax({
-    url: 'shaders/particle.vert',
+    url: 'static/shaders/particle.vert',
     datatype: 'text'
   }),
   $.ajax({
-    url: 'shaders/grid.frag',
+    url: 'static/shaders/grid.frag',
     dataType: 'text'
   }),
   $.ajax({
-    url: 'shaders/grid.vert',
+    url: 'static/shaders/grid.vert',
     dataType: 'text'
   }),
   $.ajax({
-    url: 'shaders/plane.frag',
+    url: 'static/shaders/plane.frag',
     dataType: 'text'
   }),
   $.ajax({
-    url: 'shaders/plane.vert',
+    url: 'static/shaders/plane.vert',
     dataType: 'text'
   })
 ).done(function(
