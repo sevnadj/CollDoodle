@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<!--
+/**
+ * @author Karol Stopyra stopyransky(at)gmail.com
+ * @author www.stopyransky.com
+ * 
+ */ 
+-->
+<html>
+    <head>
+        <title>stopyransky.com</title>
+        <meta charset="UTF-8">
+        <link rel="shortcut icon" href="assets/stopyransky.png">
+        <style>
+            * {
+            padding: 0px;
+            overflow : hidden;
+            margin: 0px;
+            }
+        </style>
+  
+        <script src="{{ url_for('static', filename='stopyransky-lib-min.js') }}"></script>
+        <script src="{{ url_for('static', filename='stopyransky-min.js') }}"></script>
+        <script src="{{ url_for('static', filename='p5.js') }}"></script>
+
+
+    </head>
+    <body>
+        <script>
+            var mousewheelevt = (/Firefox/i.test(navigator.userAgent)) ? 
+                "DOMMouseScroll" : "mousewheel";
+            if (document.attachEvent)
+                document.attachEvent("on" + mousewheelevt, function (e) {
+                    mouseWheel(e);
+                });
+            else if (document.addEventListener) //WC3 browsers
+                document.addEventListener(mousewheelevt, function (e) {
+                    mouseWheel(e);
+                }, false);
+            var disappear = function() {};
+ 
+        </script>
+    </body>
+</html>
