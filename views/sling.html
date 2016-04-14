@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Laminar Flow Experiment 2 | built with Realtime Studio and Uno (beta)</title>
+    <title>Sling</title>
     <style>
       body {
         width: 100%;
@@ -21,5 +21,13 @@
   <body>
     <script src="{{ url_for('static', filename='sling.js') }}" defer="defer"></script>
     <script src="{{ url_for('static', filename='sound2.js') }}"></script>
+    <script src="{{ url_for('static', filename='randomfunc.js') }}"></script>
+
+
+    <script type="text/javascript">
+        setTimeout(function(){ 
+            getRandomInt(0, 7);
+        }, 30000);
+    </script>
   </body>
 </html>

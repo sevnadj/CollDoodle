@@ -5,16 +5,6 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<script src="processing.js"></script>
 	<script src="{{ url_for('static', filename='atom.js') }}"></script>
-	<script type="text/javascript">
-
-		function getRandomInt(min, max) {
-		    
-		    var links = ["atom", "sea", "muscle", "pulsator"];	   
-		    var randomLink = links[Math.floor(Math.random() * (max - min + 1)) + min]
-		    window.location.replace("/" + randomLink);
-		}
-
-	</script>
 
 </head>
 <body>
@@ -24,5 +14,13 @@
 	<canvas data-processing-sources="{{ url_for('static', filename='AtomBeat.pde') }}"></canvas>
 
 	<script src="{{ url_for('static', filename='sound2.js') }}"></script>
+	<script src="{{ url_for('static', filename='randomfunc.js') }}"></script>
+	
+    <script type="text/javascript">
+        setTimeout(function(){ 
+            getRandomInt(0, 7);
+        }, 30000);
+    </script>
+
 </body>
 </html>
