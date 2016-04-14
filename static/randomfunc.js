@@ -4,6 +4,8 @@ function getRandomInt(min, max) {
     "glitter", "pixels", "sling"];
    
     var randomLink = links[Math.floor(Math.random() * (max - min + 1)) + min]
+
+    console.log("link is: " + randomLink)
     window.location.replace("/" + randomLink);
 
     // -1 with max for call func
