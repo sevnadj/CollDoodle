@@ -3,19 +3,20 @@
 <head>
 	<title>AtomBeat</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='colldoodle.css') }}">
 	<script src="processing.js"></script>
 	<script src="{{ url_for('static', filename='atom.js') }}"></script>
 
 </head>
 <body>
 	
-	<a href="/" type="button" style="position: absolute;display:inline-block;margin-top:15px;margin-left:15px;" class="btn btn-danger btn-lg" role="button">Menu</a>
+	<a href="/" type="button" style="position:absolute;display:inline-block;left:87%;margin-top:30px;" class="btn btn-danger btn-xlarge" role="button">Menu</a>
 	
 	<canvas data-processing-sources="{{ url_for('static', filename='AtomBeat.pde') }}"></canvas>
 
 	<script src="{{ url_for('static', filename='sound2.js') }}"></script>
 	<script src="{{ url_for('static', filename='randomfunc.js') }}"></script>
-	
+
     <script type="text/javascript">
         setTimeout(function(){ 
             getRandomInt(0, 7);
