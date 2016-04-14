@@ -41,6 +41,8 @@ function initInst(inst, bank, context) {
 	}
 }
 
+var loaded = 0;
+
 function loadSound(buf_obj, url, context) {
   
 	var request = new XMLHttpRequest();
@@ -51,6 +53,7 @@ function loadSound(buf_obj, url, context) {
 	request.onload = function() {
 		context.decodeAudioData(request.response, function(buffer) {
 			buf_obj.buf = buffer;
+			loaded += 1;
 		});
 	}
 	request.send();
@@ -108,7 +111,7 @@ function playNote(inst, context, note, tick, node) {
 }
 
 function playSound(buffer, context, rate, tick, node) {
-	if (typeof buffer === null) {
+	if (loaded < 15) {
 		return;
 	}
 
