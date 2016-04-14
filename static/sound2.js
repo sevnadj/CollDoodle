@@ -86,7 +86,7 @@ var ambience = { buf: null };
 var ambRand = 0;
 
 if (ambRand === 0) {
-	loadSoundLoop(ambience, "static/sounds/ambient/nature.wav", audioCtx, gainNode2);
+	loadSoundLoop(ambience, "static/sounds/ambient/nature.mp3", audioCtx, gainNode2);
 	gainNode2.gain.value = 5.5;
 }
 else if (ambRand === 1) {
