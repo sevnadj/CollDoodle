@@ -82,8 +82,8 @@ initInst(chInst3, chordSound, audioCtx);
 
 var ambience = { buf: null };
 
-//var ambRand = getRandomInt(0, 2);
-var ambRand = 0;
+var ambRand = getRandomInt(0, 2);
+//var ambRand = 0;
 
 if (ambRand === 0) {
 	loadSoundLoop(ambience, "static/sounds/ambient/nature.mp3", audioCtx, gainNode2);
