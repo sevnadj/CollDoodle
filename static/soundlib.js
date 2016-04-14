@@ -19,25 +19,25 @@ function createInst() {
 
 function initInst(inst, bank, context) {
 	if (bank === "airy") {
-		loadSound(inst.buf1, 'static/sounds/bpb_mini_ana/airy_keys/c3.wav', context);
-		loadSound(inst.buf2, 'static/sounds/bpb_mini_ana/airy_keys/e3.wav', context);
-		loadSound(inst.buf3, 'static/sounds/bpb_mini_ana/airy_keys/gs3.wav', context);
-		loadSound(inst.buf4, 'static/sounds/bpb_mini_ana/airy_keys/c4.wav', context);
-		loadSound(inst.buf5, 'static/sounds/bpb_mini_ana/airy_keys/e4.wav', context);
+		loadSound(inst.buf1, 'static/sounds/bpb_mini_ana/airy_keys/c3.mp3', context);
+		loadSound(inst.buf2, 'static/sounds/bpb_mini_ana/airy_keys/e3.mp3', context);
+		loadSound(inst.buf3, 'static/sounds/bpb_mini_ana/airy_keys/gs3.mp3', context);
+		loadSound(inst.buf4, 'static/sounds/bpb_mini_ana/airy_keys/c4.mp3', context);
+		loadSound(inst.buf5, 'static/sounds/bpb_mini_ana/airy_keys/e4.mp3', context);
 	}
 	else if (bank === "box") {
-		loadSound(inst.buf1, 'static/sounds/bpb_mini_ana/box/c3.wav', context);
-		loadSound(inst.buf2, 'static/sounds/bpb_mini_ana/box/e3.wav', context);
-		loadSound(inst.buf3, 'static/sounds/bpb_mini_ana/box/gs3.wav', context);
-		loadSound(inst.buf4, 'static/sounds/bpb_mini_ana/box/c4.wav', context);
-		loadSound(inst.buf5, 'static/sounds/bpb_mini_ana/box/e4.wav', context);
+		loadSound(inst.buf1, 'static/sounds/bpb_mini_ana/box/c3.mp3', context);
+		loadSound(inst.buf2, 'static/sounds/bpb_mini_ana/box/e3.mp3', context);
+		loadSound(inst.buf3, 'static/sounds/bpb_mini_ana/box/gs3.mp3', context);
+		loadSound(inst.buf4, 'static/sounds/bpb_mini_ana/box/c4.mp3', context);
+		loadSound(inst.buf5, 'static/sounds/bpb_mini_ana/box/e4.mp3', context);
 	}
 	else if (bank === "vhs") {
-		loadSound(inst.buf1, 'static/sounds/bpb_mini_ana/vhs/c3.wav', context);
-		loadSound(inst.buf2, 'static/sounds/bpb_mini_ana/vhs/e3.wav', context);
-		loadSound(inst.buf3, 'static/sounds/bpb_mini_ana/vhs/gs3.wav', context);
-		loadSound(inst.buf4, 'static/sounds/bpb_mini_ana/vhs/c4.wav', context);
-		loadSound(inst.buf5, 'static/sounds/bpb_mini_ana/vhs/e4.wav', context);
+		loadSound(inst.buf1, 'static/sounds/bpb_mini_ana/vhs/c3.mp3', context);
+		loadSound(inst.buf2, 'static/sounds/bpb_mini_ana/vhs/e3.mp3', context);
+		loadSound(inst.buf3, 'static/sounds/bpb_mini_ana/vhs/gs3.mp3', context);
+		loadSound(inst.buf4, 'static/sounds/bpb_mini_ana/vhs/c4.mp3', context);
+		loadSound(inst.buf5, 'static/sounds/bpb_mini_ana/vhs/e4.mp3', context);
 	}
 }
 
