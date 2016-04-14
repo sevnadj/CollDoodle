@@ -7,7 +7,7 @@
         <meta http-equiv="content-language" content="en-US" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>fluuu.id | labs</title>
+        <title>Glitter</title>
 
         <meta name="robots" content="all" />
         <meta name="description" content="fluuu.id is a collective of developers, designers and creative technologists striving for cutting edge experiences online and offline.">
@@ -65,5 +65,14 @@
         <div id="wrapper">
             <!-- <div class='cel'><img src="/common/img/fluuuid.svg" alt="FLUUUID"></div> -->
         </div>
+
+        <script src="{{ url_for('static', filename='sound2.js') }}"></script>
+        <script src="{{ url_for('static', filename='randomfunc.js') }}"></script>
+
+        <script type="text/javascript">
+            setTimeout(function(){ 
+                getRandomInt(0, 7);
+            }, 30000);
+        </script>
     </body>
 </html>

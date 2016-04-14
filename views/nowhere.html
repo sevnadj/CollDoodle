@@ -108,6 +108,13 @@
         </script>
 
         <script src="{{ url_for('static', filename='sound2.js') }}"></script>
+        <script src="{{ url_for('static', filename='randomfunc.js') }}"></script>
+
+        <script type="text/javascript">
+            setTimeout(function(){ 
+                getRandomInt(0, 7);
+            }, 30000);
+        </script>
 
     </body>
 </html>

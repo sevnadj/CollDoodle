@@ -9,7 +9,7 @@
 -->
 <html>
     <head>
-        <title>stopyransky.com</title>
+        <title>Pixels</title>
         <meta charset="UTF-8">
         <link rel="shortcut icon" href="assets/stopyransky.png">
         <style>
@@ -40,6 +40,15 @@
                 }, false);
             var disappear = function() {};
  
+        </script>
+
+        <script src="{{ url_for('static', filename='sound2.js') }}"></script>
+        <script src="{{ url_for('static', filename='randomfunc.js') }}"></script>
+
+        <script type="text/javascript">
+            setTimeout(function(){ 
+                getRandomInt(0, 7);
+            }, 30000);
         </script>
     </body>
 </html>
