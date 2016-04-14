@@ -5,7 +5,7 @@
     <title>Sling</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    
+
     <style>
       body {
         width: 100%;
@@ -23,7 +23,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='colldoodle.css') }}">
   </head>
   <body>
-    <a href="/" type="button" style="position:absolute;display:inline-block;left:87%;margin-top:30px;" class="btn btn-danger btn-xlarge" role="button">Menu</a>
+    <a href="/" type="button" style="position:absolute;z-index:2;display:inline-block;left:87%;margin-top:30px;" class="btn btn-danger btn-xlarge" role="button">Menu</a>
 
     <script src="{{ url_for('static', filename='sling.js') }}" defer="defer"></script>
     <script src="{{ url_for('static', filename='sound2.js') }}"></script>
