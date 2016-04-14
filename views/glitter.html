@@ -65,7 +65,7 @@
         <script src="{{ url_for('static', filename='sketch.min.js') }}"></script>
     </head>
     <body>
-      <a href="/" type="button" style="position:absolute;display:inline-block;left:87%;margin-top:30px;" class="btn btn-danger btn-xlarge" role="button">Menu</a>
+      <a href="/" type="button" style="position:absolute;z-index:2;display:inline-block;left:87%;margin-top:30px;" class="btn btn-danger btn-xlarge" role="button">Menu</a>
       <script src="{{ url_for('static', filename='glitter.js') }}"></script>
 
         <div id="wrapper">
@@ -76,9 +76,9 @@
         <script src="{{ url_for('static', filename='randomfunc.js') }}"></script>
 
         <script type="text/javascript">
-            setTimeout(function(){ 
-                getRandomInt(0, 7);
-            }, 30000);
+            // setTimeout(function(){ 
+            //     getRandomInt(0, 7);
+            // }, 30000);
         </script>
     </body>
 </html>
