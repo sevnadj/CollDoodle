@@ -108,7 +108,7 @@ function playNote(inst, context, note, tick, node) {
 }
 
 function playSound(buffer, context, rate, tick, node) {
-	if (typeof buffer === "undefined") {
+	if (typeof buffer !== "AudioBuffer") {
 		return;
 	}
 
