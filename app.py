@@ -14,6 +14,7 @@ app.register_blueprint(controllers.atom)
 app.register_blueprint(controllers.nowhere)
 app.register_blueprint(controllers.glitter)
 app.register_blueprint(controllers.pixels)
+app.register_blueprint(controllers.sling)
 app.register_blueprint(controllers.error)
 
 #mysql = MySQL()
