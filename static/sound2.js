@@ -1,186 +1,164 @@
-// create web audio api context
-var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
-// create Oscillator and gain node
-var oscillator = audioCtx.createOscillator();
-
-var chord1 = audioCtx.createOscillator();
-var chord2 = audioCtx.createOscillator();
-var chord3 = audioCtx.createOscillator();
-
-var gainNode = audioCtx.createGain();
-var gainNode2 = audioCtx.createGain();
-
-// connect oscillator to gain node to speakers
-
-oscillator.connect(gainNode);
-
-chord1.connect(gainNode2);
-chord2.connect(gainNode2);
-chord3.connect(gainNode2);
-
-gainNode.connect(audioCtx.destination);
-gainNode2.connect(audioCtx.destination);
-
-gainNode.gain.value = 0.04
-gainNode2.gain.value = 0.04
-
-// create initial theremin frequency and volumn values
 
 var WIDTH = window.innerWidth;
 var HEIGHT = window.innerHeight;
 
-var maxFreq = 6000;
-var maxVol = 0.02;
+var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
-var initialFreq = 3000;
-var initialVol = 0.001;
+var gainNode = audioCtx.createGain();
+var gainNode2 = audioCtx.createGain();
+var gainNode3 = audioCtx.createGain();
 
-var scale = [130.813, 146.832, 164.814, 174.614, 195.998, 220.000, 246.942, 261.626, 293.665, 329.628];
 
-// set options for the oscillator
 
-oscillator.type = 'triangle';
-oscillator.frequency.value = scale[0]; // value in hertz
-oscillator.detune.value = 0; // value in cents
-oscillator.start(0);
+var tuna = new Tuna(audioCtx);
 
-chord1.type = 'sine';
-chord1.frequency.value = scale[0] * 2
-chord1.detune.value = 0; // value in cents
-chord1.start(0);
+var delay = new tuna.Delay({
+    feedback: 0.65,    //0 to 1+
+    delayTime: 200,    //how many milliseconds should the wet signal be delayed?
+    wetLevel: 0.7,    //0 to 1+
+    dryLevel: 1,       //0 to 1+
+    cutoff: 2000,      //cutoff frequency of the built in lowpass-filter. 20 to 22050
+    bypass: 0
+});
 
-chord2.type = 'sine';
-chord2.frequency.value = scale[2] * 2
-chord2.detune.value = 0; // value in cents
-chord2.start(0);
+var phaser = new tuna.Phaser({
+    rate: 1.2,                     //0.01 to 8 is a decent range, but higher values are possible
+    depth: 0.3,                    //0 to 1
+    feedback: 0.2,                 //0 to 1+
+    stereoPhase: 30,               //0 to 180
+    baseModulationFrequency: 700,  //500 to 1500
+    bypass: 0
+});
 
-chord3.type = 'sine';
-chord3.frequency.value = scale[4] * 2
-chord3.detune.value = 0; // value in cents
-chord3.start(0);
+var filter = audioCtx.createBiquadFilter();
+filter.type = "lowpass";
+filter.frequency.value = 1000;
+filter.Q.value = 14;
 
-oscillator.onended = function() {
- console.log('Your tone has now stopped playing!');
+var filter2 = audioCtx.createBiquadFilter();
+filter2.type = "lowpass";
+filter2.frequency.value = 2000;
+filter2.Q.value = 4;
+
+//gainNode 3 -> lead, gainNode -> chords, gainNode2 -> ambience
+
+var soundsRand = getRandomInt(0, 2);
+//var soundsRand = 1;
+
+leadSound = "";
+chordSound = "";
+
+if (soundsRand === 0) {
+	leadSound = "airy";
+	chordSound = "vhs";
+	gainNode3.gain.value = 0.9;
+	gainNode.gain.value = 1.2;
+}
+else if (soundsRand === 1) {
+	leadSound = "vhs";
+	chordSound = "box";
+	gainNode3.gain.value = 1.3;
+	gainNode.gain.value = 1.1;
+
+}
+else {
+	leadSound = "box";
+	chordSound = "vhs";
+	gainNode3.gain.value = 1.2;
+	gainNode.gain.value = 1.4;
 }
 
-//gainNode.gain.value = initialVol;
+var leadInst = createInst();
+initInst(leadInst, leadSound, audioCtx);
 
-// Mouse pointer coordinates
+var chInst1 = createInst();
+initInst(chInst1, chordSound, audioCtx);
+
+var chInst2 = createInst();
+initInst(chInst2, chordSound, audioCtx);
+
+var chInst3 = createInst();
+initInst(chInst3, chordSound, audioCtx);
+
+var ambience = { buf: null };
+
+//var ambRand = getRandomInt(0, 2);
+var ambRand = 0;
+
+if (ambRand === 0) {
+	loadSoundLoop(ambience, "static/sounds/ambient/nature.wav", audioCtx, gainNode2);
+	gainNode2.gain.value = 5.5;
+}
+else if (ambRand === 1) {
+	loadSoundLoop(ambience, "static/sounds/ambient/water1.wav", audioCtx, gainNode2);
+	gainNode2.gain.value = 0.9
+}
+else {
+	loadSoundLoop(ambience, "static/sounds/ambient/water2.wav", audioCtx, gainNode2);
+	gainNode2.gain.value = 2.5;
+}
+
+gainNode.connect(delay);
+gainNode3.connect(delay);
+delay.connect(filter2);
+//filter2.connect(phaser);
+//phaser.connect(audioCtx.destination);
+filter2.connect(audioCtx.destination);
+
+gainNode2.connect(filter);
+filter.connect(audioCtx.destination);
+
+gainNode.gain.value = 0.6;
+
+var lead;
+var chord1;
+var chord2;
+var chord3;
 
 var CurX;
-var CurY;
+var CurY; 
 
-var notesByKeyCode = [{
-    noteName: 'c4',
-    frequency: 261.6,
-    keyName: 'a'
-  },{
-    noteName: 'd4',
-    frequency: 293.7,
-    keyName: 's'
-  },{
-    noteName: 'e4',
-    frequency: 329.6,
-    keyName: 'd'
-  },{
-    noteName: 'f4',
-    frequency: 349.2,
-    keyName: 'f'
-  },{
-    noteName: 'g4',
-    frequency: 392,
-    keyName: 'g'
-  },{
-    noteName: 'a4',
-    frequency: 440,
-    keyName: 'h'
-  },{
-    noteName: 'b4',
-    frequency: 493.9,
-    keyName: 'j'
-  },{
-    noteName: 'c5',
-    frequency: 523.3,
-    keyName: 'k'
-  },{
-    noteName: 'd5',
-    frequency: 587.3,
-    keyName: 'l'
-  },{
-    noteName: 'e5',
-    frequency: 659.3,
-    keyName: ';'
-  },
-  {
-    noteName: 'e5',
-    frequency: 659.3,
-    keyName: ';'
-  }
-];
+var chordVals = {};
 
+var chordRand = getRandomInt(0, 3);
 
 function updateSound(mouse_x, mouse_y) {
-    KeyFlag = false;
-    oscillator.connect(gainNode);
-
-    //var select = notesByKeyCode[Math.floor(mouse_x / WIDTH * 10)].frequency;
-
-    //oscillator.frequency.value = select;
-    
+  
     CurX = mouse_x;
     CurY = mouse_y;
     
-    temp = CurX/WIDTH
-    val = 0
-    
-    if (temp < 1/8)
-		val = scale[0] * 2;
-	else if (temp < 2/8)
-		val = scale[1] * 2;
-	else if (temp < 3/8)
-		val = scale[2] * 2;
-	else if (temp < 4/8)
-		val = scale[3] *2;
-	else if (temp < 5/8)
-		val = scale[4] *2;
-	else if (temp < 6/8)
-		val = scale[5] *2;
-	else if (temp < 7/8)
-		val = scale[6] *2;
-	else
-		val = scale[7] *2;
-	
-	oscillator.frequency.value = val;
-    
+    temp = CurX/WIDTH;
     temp2 = CurY/HEIGHT;
-	
-	if (temp2 < 1/3) {
-		chord1.frequency.value = scale[4] * 2
-		chord2.frequency.value = scale[6] * 2
-		chord3.frequency.value = scale[8] * 2
-	}
-	else if (temp2 < 2/3) {
-		chord1.frequency.value = scale[1] * 2
-		chord2.frequency.value = scale[3] * 2
-		chord3.frequency.value = scale[5] * 2
-	}
-	else {
-		chord1.frequency.value = scale[0] * 2
-		chord2.frequency.value = scale[2] * 2
-		chord3.frequency.value = scale[4] * 2
-	}
+    
+    updateChordVals(temp, temp2, chordRand, chordVals);
 }
 
+var play = 1;
 var timer;
-document.body.onmousemove = function(prop){
-  
-  clearTimeout(timer);
+var tick = 1000;
 
-  timer = setTimeout(function() {
-    oscillator.disconnect();
-  }, 100);
-  
+document.body.onmousemove = function(prop) {	
+	
+	temp = prop.clientX/WIDTH;
+    temp2 = prop.clientY/HEIGHT;
 
-  updateSound(prop.clientX, prop.clientY);
+    filter.frequency.value = 1000 + (temp * 1000);
+    filter2.frequency.value = 2200 - (temp2 * 1000);
+	
+	if (play === 1) {
+		
+		updateSound(prop.clientX, prop.clientY);
+		
+		playNote(leadInst, audioCtx, chordVals.lead_, tick, gainNode3);
+		playNote(chInst1, audioCtx, chordVals.chord1_, tick, gainNode);
+		playNote(chInst2, audioCtx, chordVals.chord2_, tick, gainNode);
+		playNote(chInst3, audioCtx, chordVals.chord3_, tick, gainNode);		
+		
+		play = 0;
+		
+		timer2 = setTimeout(function() {
+			play = 1;
+		}, tick); 	// tick = time division
+		
+	}
 };
