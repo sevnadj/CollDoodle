@@ -90,11 +90,11 @@ if (ambRand === 0) {
 	gainNode2.gain.value = 5.5;
 }
 else if (ambRand === 1) {
-	loadSoundLoop(ambience, "static/sounds/ambient/water1.wav", audioCtx, gainNode2);
+	loadSoundLoop(ambience, "static/sounds/ambient/water1.mp3", audioCtx, gainNode2);
 	gainNode2.gain.value = 0.9
 }
 else {
-	loadSoundLoop(ambience, "static/sounds/ambient/water2.wav", audioCtx, gainNode2);
+	loadSoundLoop(ambience, "static/sounds/ambient/water2.mp3", audioCtx, gainNode2);
 	gainNode2.gain.value = 2.5;
 }
 
