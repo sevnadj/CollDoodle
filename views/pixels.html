@@ -19,6 +19,8 @@
             margin: 0px;
             }
         </style>
+
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='colldoodle.css') }}">
   
         <script src="{{ url_for('static', filename='stopyransky-lib-min.js') }}"></script>
         <script src="{{ url_for('static', filename='stopyransky-min.js') }}"></script>
@@ -27,6 +29,8 @@
 
     </head>
     <body>
+
+        <a href="/" type="button" style="position:absolute;display:inline-block;left:87%;margin-top:30px;" class="btn btn-danger btn-xlarge" role="button">Menu</a>
         <script>
             var mousewheelevt = (/Firefox/i.test(navigator.userAgent)) ? 
                 "DOMMouseScroll" : "mousewheel";

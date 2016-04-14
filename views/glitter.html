@@ -56,11 +56,15 @@
             }
         </style>
 
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='colldoodle.css') }}">
+
         <script src="{{ url_for('static', filename='physics.js') }}"></script>
         <script src="{{ url_for('static', filename='sketch.min.js') }}"></script>
     </head>
     <body>
       <script src="{{ url_for('static', filename='glitter.js') }}"></script>
+
+      <a href="/" type="button" style="position:absolute;display:inline-block;left:87%;margin-top:30px;" class="btn btn-danger btn-xlarge" role="button">Menu</a>
 
         <div id="wrapper">
             <!-- <div class='cel'><img src="/common/img/fluuuid.svg" alt="FLUUUID"></div> -->
