@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Laminar Flow Experiment 2 | built with Realtime Studio and Uno (beta)</title>
+    <style>
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        background: #000;
+        color: #6b6b6b;
+        font-family: ubuntu,helvetica,arial,sans,sans-serif;
+      }
+      :-webkit-full-screen canvas {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="{{ url_for('static', filename='sling.js') }}" defer="defer"></script>
+    <script src="{{ url_for('static', filename='sound2.js') }}"></script>
+  </body>
+</html>

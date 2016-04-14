@@ -7,3 +7,4 @@ from atom import *
 from nowhere import *
 from glitter import *
 from pixels import *
+from sling import *
