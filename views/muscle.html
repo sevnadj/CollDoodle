@@ -32,11 +32,19 @@
                 </button> -->
 
         <div id="container"></div>
+        <script src="{{ url_for('static', filename='randomfunc.js') }}"></script>
         <script src="https://soulwire.github.io/sketch.js/js/sketch.min.js"></script>
         <script src="https://dat-gui.googlecode.com/git/build/dat.gui.min.js"></script>
         <script src="https://dat-gui.googlecode.com/git/build/dat.color.min.js"></script>
         <script src="{{ url_for('static', filename='tentacles.js') }}"></script>
         <script src="{{ url_for('static', filename='sound.js') }}"></script>
+
+
+        <script type="text/javascript">
+            setTimeout(function(){ 
+                getRandomInt(0, 4);
+            }, 4000);
+        </script>
 
     </body>
 </html>
