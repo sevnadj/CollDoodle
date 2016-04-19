@@ -31,9 +31,10 @@ var phaser = new tuna.Phaser({
 });
 
 var filter = audioCtx.createBiquadFilter();
-filter.type = "lowpass";
-filter.frequency.value = 1000;
-filter.Q.value = 14;
+var filter_ = audioCtx.createBiquadFilter();
+filter_.type = "lowpass";
+filter_.frequency.value = 1000;
+filter_.Q.value = 14;
 
 var filter2 = audioCtx.createBiquadFilter();
 filter2.type = "lowpass";
@@ -105,8 +106,8 @@ delay.connect(filter2);
 //phaser.connect(audioCtx.destination);
 filter2.connect(audioCtx.destination);
 
-gainNode2.connect(filter);
-filter.connect(audioCtx.destination);
+gainNode2.connect(filter_);
+filter_.connect(audioCtx.destination);
 
 gainNode.gain.value = 0.6;
 
@@ -142,7 +143,7 @@ document.body.onmousemove = function(prop) {
 	temp = prop.clientX/WIDTH;
     temp2 = prop.clientY/HEIGHT;
 
-    filter.frequency.value = 1000 + (temp * 1000);
+    filter_.frequency.value = 1000 + (temp * 1000);
     filter2.frequency.value = 2200 - (temp2 * 1000);
 	
 	if (play === 1) {
